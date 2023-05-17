@@ -8,6 +8,7 @@
 This package is specifically designed to protect your Laravel app and filament admin panel from the blacklist network.
 
 ![filament-firewall-package-1](https://github.com/solutionforest/filament-firewall/assets/68525320/615f054c-1b6f-436e-8825-98efb8371491)
+![filament-firewall-package-2](https://github.com/solutionforest/filament-firewall/assets/68525320/5920cd52-4488-4a45-988a-0cb952dec285)
 
 ## Getting Started
 
@@ -30,3 +31,20 @@ This package is specifically designed to protect your Laravel app and filament a
     ];
     ```
 4. You can change the setting in the `config/filament-firewall.php` file to skip the middleware `WhitelistRangeMiddleware` check.
+
+
+## Publishing translations
+```bash
+php artisan vendor:publish --tag=filament-firewall-translations
+```
+
+## Security Vulnerabilities
+If you discover any security related issues, please email info+package@solutionforest.net instead of using the issue tracker.
+
+
+## License
+Please see [License File](LICENSE.md) for more information.
+
+
+## Credits
+- [Laravel Firewall](https://github.com/akaunting/laravel-firewall)
