@@ -38,8 +38,6 @@ class FilamentFirewallServiceProvider extends PluginServiceProvider
 
     public function getResources(): array
     {
-        return [
-            FirewallIpResource::class,
-        ];
+        return config('filament-firewall.resources', []);
     }
 }
