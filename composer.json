@@ -1,0 +1,63 @@
+{
+    "name": "solution-forest/filament-firewall",
+    "description": "This is a middleware for whitelisting/blacklisting for Filament Admin",
+    "keywords": [
+        "Solution Forest",
+        "laravel",
+        "filament-firewall"
+    ],
+    "homepage": "https://github.com/solution-forest/filament-firewall",
+    "support": {
+        "issues": "https://github.com/solution-forest/filament-firewall/issues",
+        "source": "https://github.com/solution-forest/filament-firewall"
+    },
+    "license": "MIT",
+    "authors": [{
+        "name": "Carly",
+        "email": "info@solutionforest.net",
+        "role": "Developer"
+    }],
+    "require": {
+        "php": "^8.0",
+        "akaunting/laravel-firewall": "^2.1",
+        "filament/filament": "^2.0",
+        "spatie/laravel-package-tools": "^1.13.5"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "nunomaduro/collision": "^6.0",
+        "nunomaduro/larastan": "^2.0.1",
+        "orchestra/testbench": "^7.0",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.1",
+        "pestphp/pest-plugin-livewire": "^1.0",
+        "pestphp/pest-plugin-parallel": "^0.3",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpunit/phpunit": "^9.5",
+        "spatie/laravel-ray": "^1.26"
+    },
+    "autoload": {
+        "psr-4": {
+            "SolutionForest\\FilamentFirewall\\": "src",
+            "SolutionForest\\FilamentFirewall\\Database\\Factories\\": "database/factories",
+            "SolutionForest\\FilamentFirewall\\Database\\Seeders\\": "database/seeders"
+        }
+    },
+    "autoload-dev": {
+        
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SolutionForest\\FilamentFirewall\\FilamentFirewallServiceProvider"
+            ],
+            "aliases": {
+                "FilamentFirewall": "SolutionForest\\FilamentFirewall\\Facades\\FilamentFirewall"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
