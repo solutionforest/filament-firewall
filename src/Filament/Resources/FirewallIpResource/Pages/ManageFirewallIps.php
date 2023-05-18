@@ -21,8 +21,7 @@ class ManageFirewallIps extends ManageRecords
                 ->label(__('filament-firewall::filament-firewall.action.addMyIp'))
                 ->action('addMyIp'),
             Actions\CreateAction::make()
-                ->label(__('filament-support::actions/create.single.label', ['label' => null]))
-                ->disableCreateAnother(),
+                ->label(__('filament-support::actions/create.single.label', ['label' => null])),
         ];
     }
 
