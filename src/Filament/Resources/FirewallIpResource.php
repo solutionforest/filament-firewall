@@ -7,6 +7,8 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 use SolutionForest\FilamentFirewall\Filament\Resources\FirewallIpResource\Pages;
@@ -22,14 +24,13 @@ class FirewallIpResource extends Resource
                     ->default(fn () => Request::getClientIp())
                     ->regex('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/')
                     ->validationAttribute(Str::upper(__('filament-firewall::filament-firewall.form.field.ip')))
-                    ->suffixAction(fn (callable $set) =>
-                        Forms\Components\Actions\Action::make('fillMyIp')
-                            ->label(__('filament-firewall::filament-firewall.action.fillMyIp'))
-                            ->icon('heroicon-o-pencil-alt')
-                            ->action(fn () => $set('ip', Request::getClientIp()))
+                    ->suffixAction(fn (callable $set) => Forms\Components\Actions\Action::make('fillMyIp')
+                        ->label(__('filament-firewall::filament-firewall.action.fillMyIp'))
+                        ->icon('heroicon-o-pencil-alt')
+                        ->action(fn () => $set('ip', Request::getClientIp()))
                     )
                     ->required(),
-                    
+
                 Forms\Components\TextInput::make('prefix_size')
                     ->label(__('filament-firewall::filament-firewall.form.field.prefix_size'))
                     ->numeric()
@@ -132,5 +133,13 @@ class FirewallIpResource extends Resource
     protected static function getNavigationGroup(): ?string
     {
         return __('filament-firewall::filament-firewall.filament.resource.ip.getNavigationGroup');
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
     }
 }
