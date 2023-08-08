@@ -32,6 +32,17 @@ This package provides a whitelist and blacklist feature to restrict access to yo
     ];
     ```
 4. You can change the setting in the `config/filament-firewall.php` file to skip the middleware `WhitelistRangeMiddleware` check.
+5. Register the plugin in your Panel provider:
+   > **Important:  Register the plugin in your Panel provider after version 2.x**
+   ``` bash
+    use SolutionForest\FilamentFirewall\FilamentFirewallPanel;
+ 
+    public function panel(Panel $panel): Panel
+    {
+        return $panel
+            ->plugin(FilamentFirewallPanel::make());
+    }
+   ```
 
 ## Usage
 - On the IP Firewall page, you have the ability to add IPs to either a whitelist or a blocklist. The `WhitelistRangeMiddleware` middleware will automatically handle whitelist IP access. If you need to block a range of IPs while allowing a specific IP, such as blocking *172.19.0.0/24* except for *172.19.0.1*, you'll need to create a new **Deny** access record and specify the IP and prefix as *'172.19.0.0'* and *'24'*. Additionally, you'll need to add an **Allow** access record for the specific IP *'172.19.0.1'*.
