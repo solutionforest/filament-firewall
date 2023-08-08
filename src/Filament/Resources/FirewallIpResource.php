@@ -3,10 +3,11 @@
 namespace SolutionForest\FilamentFirewall\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Request;
@@ -24,10 +25,10 @@ class FirewallIpResource extends Resource
                     ->default(fn () => Request::getClientIp())
                     ->regex('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/')
                     ->validationAttribute(Str::upper(__('filament-firewall::filament-firewall.form.field.ip')))
-                    ->suffixAction(fn (callable $set) => Forms\Components\Actions\Action::make('fillMyIp')
+                    ->suffixAction(Forms\Components\Actions\Action::make('fillMyIp')
                         ->label(__('filament-firewall::filament-firewall.action.fillMyIp'))
-                        ->icon('heroicon-o-pencil-alt')
-                        ->action(fn () => $set('ip', Request::getClientIp()))
+                        ->icon('heroicon-o-pencil')
+                        ->action(fn (Set $set) => $set('ip', Request::getClientIp()))
                     )
                     ->required(),
 
@@ -64,14 +65,11 @@ class FirewallIpResource extends Resource
                     ->sortable(),
                 Tables\Columns\IconColumn::make('blocked')
                     ->label(__('filament-firewall::filament-firewall.table.column.is_allow'))
-                    ->options([
-                        'heroicon-o-x-circle' => fn (bool $record) => boolval($record),
-                        'heroicon-o-check-circle' => fn (bool $record) => ! boolval($record),
-                    ])
-                    ->colors([
-                        'danger' => fn (bool $record) => boolval($record),
-                        'success' => fn (bool $record) => ! boolval($record),
-                    ]),
+                    ->boolean()
+                    ->falseIcon('heroicon-o-check-circle')
+                    ->falseColor('success')
+                    ->trueIcon('heroicon-o-x-circle')
+                    ->trueColor('danger'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('updated_at')
@@ -105,7 +103,7 @@ class FirewallIpResource extends Resource
         return config('filament-firewall.models.ip', \SolutionForest\FilamentFirewall\Models\Ip::class);
     }
 
-    protected static function getNavigationLabel(): string
+    public static function getNavigationLabel(): string
     {
         return __('filament-firewall::filament-firewall.filament.resource.ip.navigationLabel');
     }
@@ -130,7 +128,7 @@ class FirewallIpResource extends Resource
         return __('filament-firewall::filament-firewall.filament.resource.ip.pluralModelLabel');
     }
 
-    protected static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): ?string
     {
         return __('filament-firewall::filament-firewall.filament.resource.ip.getNavigationGroup');
     }

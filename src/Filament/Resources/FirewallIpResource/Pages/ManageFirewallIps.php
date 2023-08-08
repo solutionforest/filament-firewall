@@ -2,10 +2,11 @@
 
 namespace SolutionForest\FilamentFirewall\Filament\Resources\FirewallIpResource\Pages;
 
+use Filament\Actions\Action;
+use Filament\Actions\CreateAction;
+use Filament\Facades\Filament;
 use Filament\Notifications\Notification;
-use Filament\Pages\Actions;
 use Filament\Resources\Pages\ManageRecords;
-use Filament\Support\Exceptions\Halt;
 use Illuminate\Support\Facades\Request;
 use SolutionForest\FilamentFirewall\Facades\FilamentFirewall;
 use SolutionForest\FilamentFirewall\Filament\Resources\FirewallIpResource;
@@ -17,11 +18,11 @@ class ManageFirewallIps extends ManageRecords
     protected function getActions(): array
     {
         return [
-            Actions\Action::make('addMyIp')
+            Action::make('addMyIp')
                 ->label(__('filament-firewall::filament-firewall.action.addMyIp'))
                 ->action('addMyIp'),
-            Actions\CreateAction::make()
-                ->label(__('filament-support::actions/create.single.label', ['label' => null])),
+            CreateAction::make()
+                ->label(__('filament-actions::create.single.label', ['label' => null])),
         ];
     }
 
@@ -40,18 +41,28 @@ class ManageFirewallIps extends ManageRecords
                 return;
             }
 
-            $this->handleRecordCreation([
+            $data = [
                 'ip' => $currIp,
                 'blocked' => false,
-            ]);
-            
+            ];
+
+            $record = new ($this->getModel())($data);
+
+            if ($tenant = Filament::getTenant()) {
+                $record = $this->associateRecordWithTenant($record, $tenant);
+
+            } else {
+
+                $record->save();
+            }
+
             Notification::make()
-                ->title($this->getCreatedNotificationMessage())
+                ->title(__('filament-actions::create.single.notifications.created.title'))
                 ->success()
                 ->send();
     
         } catch (\Exception $e) {
-            
+            //
         }
     }
 }

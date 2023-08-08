@@ -2,13 +2,11 @@
 
 namespace SolutionForest\FilamentFirewall;
 
-use Carbon\Carbon;
-use Filament\PluginServiceProvider;
-use SolutionForest\FilamentFirewall\Filament\Resources\FirewallIpResource;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class FilamentFirewallServiceProvider extends PluginServiceProvider
+class FilamentFirewallServiceProvider extends PackageServiceProvider
 {
     public static string $name = 'filament-firewall';
 
@@ -34,10 +32,5 @@ class FilamentFirewallServiceProvider extends PluginServiceProvider
                         $command->call('migrate');
                     });
             });
-    }
-
-    public function getResources(): array
-    {
-        return config('filament-firewall.resources', []);
     }
 }
