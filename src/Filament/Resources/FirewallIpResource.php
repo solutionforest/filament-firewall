@@ -71,8 +71,10 @@ class FirewallIpResource extends Resource
                     ->trueIcon('heroicon-o-x-circle')
                     ->trueColor('danger'),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('filament-firewall::filament-firewall.table.column.created_at'))
                     ->sortable(),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('filament-firewall::filament-firewall.table.column.updated_at'))
                     ->sortable(),
             ])
             ->filters([

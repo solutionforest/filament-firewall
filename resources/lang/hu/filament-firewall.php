@@ -12,6 +12,8 @@ return [
     'table.column.prefix_size' => 'Előtag',
     'table.column.blocked' => 'Blokkolva?',
     'table.column.is_allow' => 'Művelet',
+    'table.column.created_at' => 'Létrehozva',
+    'table.column.updated_at' => 'Módosítva',
 
     'form.field.ip' => 'IP cím',
     'form.field.prefix_size' => 'Előtag',

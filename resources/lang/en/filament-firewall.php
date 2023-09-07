@@ -13,6 +13,8 @@ return [
     'table.column.prefix_size' => 'Prefix',
     'table.column.blocked' => 'Blocked?',
     'table.column.is_allow' => 'Allow / Deny',
+    'table.column.created_at' => 'Created at',
+    'table.column.updated_at' => 'Updated at',
 
     'form.field.ip' => 'IP',
     'form.field.prefix_size' => 'Prefix',
