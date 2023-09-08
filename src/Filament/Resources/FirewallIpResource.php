@@ -103,6 +103,11 @@ class FirewallIpResource extends Resource
         return config('filament-firewall.models.ip', \SolutionForest\FilamentFirewall\Models\Ip::class);
     }
 
+    public static function getNavigationIcon(): ?string
+    {
+        return 'heroicon-o-shield-check';
+    }
+
     public static function getNavigationLabel(): string
     {
         return __('filament-firewall::filament-firewall.filament.resource.ip.navigationLabel');
