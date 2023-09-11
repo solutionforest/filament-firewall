@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> Please note that we will only be updating to version 2.x, excluding any bug fixes.
+
 # Filament Firewall
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/solution-forest/filament-firewall.svg?style=flat-square)](https://packagist.org/packages/solution-forest/filament-firewall)
