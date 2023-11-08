@@ -68,6 +68,10 @@ class WhitelistRangeMiddleware extends BaseMiddleware
     {
         $this->prepare($request);
 
+        if ($this->isDisabled()) {
+            return true;
+        }
+
         if ($this->isWhitelist()) {
             return true;
         }
