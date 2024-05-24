@@ -19,7 +19,7 @@
     }],
     "require": {
         "php": "^8.0",
-        "akaunting/laravel-firewall": "^2.1",
+        "akaunting/laravel-firewall": "^2.2",
         "filament/filament": "^3.0",
         "filament/support": "^3.0",
         "spatie/laravel-package-tools": "^1.15.0"
