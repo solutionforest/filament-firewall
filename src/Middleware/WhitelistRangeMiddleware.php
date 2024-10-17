@@ -68,11 +68,16 @@ class WhitelistRangeMiddleware extends BaseMiddleware
     {
         $this->prepare($request);
 
+
         if ($this->isWhitelist()) {
             return true;
         }
 
         if (IpUtils::checkIp($this->ip(), config('filament-firewall.skip_whitelist_range', []))) {
+            return true;
+        }
+
+        if (!config('firewall.enabled', true)) {
             return true;
         }
 
