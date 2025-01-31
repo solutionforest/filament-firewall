@@ -89,6 +89,10 @@ This package provides a whitelist and blacklist feature to restrict access to yo
 php artisan vendor:publish --tag=filament-firewall-translations
 ```
 
+## Issues
+
+....
+
 ## Security Vulnerabilities
 If you discover any security related issues, please email info+package@solutionforest.net instead of using the issue tracker.
 
