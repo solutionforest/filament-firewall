@@ -24,7 +24,7 @@ jobs:
        env:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
        with:
-         from-tag-name: "2.0.0"
+         from-tag-name: "3.0.0"
          chapters: |
           - {"title": "Breaking Changes 💥", "label": "breaking-change"}
           - {"title": "New Features 🎉", "label": "enhancement"}
