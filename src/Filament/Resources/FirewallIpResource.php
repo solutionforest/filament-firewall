@@ -60,7 +60,7 @@ class FirewallIpResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('prefix_size')
                     ->label(__('filament-firewall::filament-firewall.table.column.prefix_size'))
-                    ->formatStateUsing(fn (?string $state): ?string => $state ? str($state)->prepend('/') : null)
+                    ->formatStateUsing(fn (?string $state): ?string => $state ? (string) str($state)->prepend('/') : null)
                     ->searchable(isIndividual: true)
                     ->sortable(),
                 Tables\Columns\IconColumn::make('blocked')
