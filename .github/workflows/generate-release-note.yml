@@ -35,9 +35,14 @@ jobs:
           echo "Tag pushed: ${{ github.ref_name }}"
 
           # Check the github release name, to validate that already build a release by current tag
-          TAG_NAME="${{ github.ref_name }}"
-          gh release list --limit 1 | grep -q "$TAG_NAME"
-          if [[ $? -eq 0 ]]; then
+          if [[ -z "$TAG_NAME" ]]; then
+            echo "No tag name found. Exiting."
+            echo "should-release=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          HAVE_RELEASE=$(gh release view "$TAG_NAME" --json tagName --jq '.tagName' 2>/dev/null)
+          if [[ "$HAVE_RELEASE" == "$TAG_NAME" ]]; then 
             echo "Release already exists for tag $TAG_NAME."
             echo "should-release=false" >> $GITHUB_OUTPUT
             exit 0
