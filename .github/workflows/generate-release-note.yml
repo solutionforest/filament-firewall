@@ -28,25 +28,11 @@ jobs:
       - name: Check if release is needed
         id: check
         run: |
+          TAG_NAME="${{ github.ref_name }}"
           echo "Tag pushed: ${{ github.ref_name }}"
-          echo "version=${{ github.ref_name }}" >> $GITHUB_OUTPUT
-          echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
-
-          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-            echo "This workflow does not run for tag pushes."
-            echo "should-release=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-          # Get the current pushing tag
-          TAG_NAME="${GITHUB_REF#refs/tags/}"
-          if [[ -z "$TAG_NAME" ]]; then
-            echo "No tag found in the current push."
-            echo "should-release=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-          echo "Current pushing tag: $TAG_NAME"
 
           # Check the github release name, to validate that already build a release by current tag
+          TAG_NAME="${{ github.ref_name }}"
           gh release list --limit 1 | grep -q "$TAG_NAME"
           if [[ $? -eq 0 ]]; then
             echo "Release already exists for tag $TAG_NAME."
@@ -55,8 +41,8 @@ jobs:
           fi
 
           echo "should-release=true" >> $GITHUB_OUTPUT
-          echo "version=${TAG_NAME#v}" >> $GITHUB_OUTPUT
-          echo "tag=$TAG_NAME" >> $GITHUB_OUTPUT
+          echo "version=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
 
   create-release:
     needs: check-for-release
