@@ -21,6 +21,7 @@ return [
     'form.field.is_allow' => 'Allow / Deny',
 
     'action.addMyIp' => 'Add My IP',
+    'action.addMyIp.error' => 'Error',
     'action.addMyIp.alreadyAdded' => 'Already added.',
     'action.fillMyIp' => 'Fill My IP',
 
