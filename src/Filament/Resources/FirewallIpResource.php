@@ -2,44 +2,56 @@
 
 namespace SolutionForest\FilamentFirewall\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Forms\Set;
+use Filament\Actions\Action;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ForceDeleteAction;
+use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Actions\RestoreAction;
+use Filament\Actions\RestoreBulkAction;
+use Filament\Forms\Components\Radio;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
-use SolutionForest\FilamentFirewall\Filament\Resources\FirewallIpResource\Pages;
+use SolutionForest\FilamentFirewall\Filament\Resources\FirewallIpResource\Pages\ManageFirewallIps;
+use SolutionForest\FilamentFirewall\Models\Ip;
 
 class FirewallIpResource extends Resource
 {
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('ip')
+        return $schema
+            ->components([
+                TextInput::make('ip')
                     ->label(__('filament-firewall::filament-firewall.form.field.ip'))
                     ->default(fn () => Request::getClientIp())
                     ->regex('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/')
                     ->validationAttribute(Str::upper(__('filament-firewall::filament-firewall.form.field.ip')))
-                    ->suffixAction(Forms\Components\Actions\Action::make('fillMyIp')
+                    ->suffixAction(Action::make('fillMyIp')
                         ->label(__('filament-firewall::filament-firewall.action.fillMyIp'))
                         ->icon('heroicon-o-pencil')
                         ->action(fn (Set $set) => $set('ip', Request::getClientIp()))
                     )
                     ->required(),
 
-                Forms\Components\TextInput::make('prefix_size')
+                TextInput::make('prefix_size')
                     ->label(__('filament-firewall::filament-firewall.form.field.prefix_size'))
                     ->numeric()
                     ->minValue(0)
                     ->maxValue(32)
                     ->prefix('/'),
 
-                Forms\Components\Radio::make('blocked')
+                Radio::make('blocked')
                     ->label(__('filament-firewall::filament-firewall.form.field.is_allow'))
                     ->options([
                         0 => __('filament-firewall::filament-firewall.labels.allow'),
@@ -54,55 +66,55 @@ class FirewallIpResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('ip')
+                TextColumn::make('ip')
                     ->label(__('filament-firewall::filament-firewall.table.column.ip'))
                     ->searchable(isIndividual: true)
                     ->sortable(),
-                Tables\Columns\TextColumn::make('prefix_size')
+                TextColumn::make('prefix_size')
                     ->label(__('filament-firewall::filament-firewall.table.column.prefix_size'))
                     ->formatStateUsing(fn (?string $state): ?string => $state ? (string) str($state)->prepend('/') : null)
                     ->searchable(isIndividual: true)
                     ->sortable(),
-                Tables\Columns\IconColumn::make('blocked')
+                IconColumn::make('blocked')
                     ->label(__('filament-firewall::filament-firewall.table.column.is_allow'))
                     ->boolean()
                     ->falseIcon('heroicon-o-check-circle')
                     ->falseColor('success')
                     ->trueIcon('heroicon-o-x-circle')
                     ->trueColor('danger'),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->label(__('filament-firewall::filament-firewall.table.column.created_at'))
                     ->sortable(),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->label(__('filament-firewall::filament-firewall.table.column.updated_at'))
                     ->sortable(),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(),
+                TrashedFilter::make(),
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-                Tables\Actions\ForceDeleteAction::make(),
-                Tables\Actions\RestoreAction::make(),
+            ->recordActions([
+                EditAction::make(),
+                DeleteAction::make(),
+                ForceDeleteAction::make(),
+                RestoreAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
-                Tables\Actions\ForceDeleteBulkAction::make(),
-                Tables\Actions\RestoreBulkAction::make(),
+            ->toolbarActions([
+                DeleteBulkAction::make(),
+                ForceDeleteBulkAction::make(),
+                RestoreBulkAction::make(),
             ]);
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageFirewallIps::route('/'),
+            'index' => ManageFirewallIps::route('/'),
         ];
     }
 
     public static function getModel(): string
     {
-        return config('filament-firewall.models.ip', \SolutionForest\FilamentFirewall\Models\Ip::class);
+        return config('filament-firewall.models.ip', Ip::class);
     }
 
     public static function getNavigationIcon(): ?string

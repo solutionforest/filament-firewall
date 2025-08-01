@@ -3,6 +3,7 @@
 namespace SolutionForest\FilamentFirewall\Middleware;
 
 use Akaunting\Firewall\Abstracts\Middleware as BaseMiddleware;
+use Closure;
 use Illuminate\Database\QueryException;
 use SolutionForest\FilamentFirewall\Facades\FilamentFirewall;
 use Symfony\Component\HttpFoundation\IpUtils;
@@ -50,7 +51,7 @@ class WhitelistRangeMiddleware extends BaseMiddleware
         return $allow;
     }
 
-    public function handle($request, \Closure $next)
+    public function handle($request, Closure $next)
     {
         if ($this->skip($request)) {
             return $next($request);

@@ -3,6 +3,8 @@
 namespace SolutionForest\FilamentFirewall;
 
 use Illuminate\Support\Collection;
+use SolutionForest\FilamentFirewall\Models\Ip;
+use Symfony\Component\HttpFoundation\IpUtils;
 
 class FilamentFirewall
 {
@@ -24,7 +26,7 @@ class FilamentFirewall
             })
             ->toArray();
 
-        return \Symfony\Component\HttpFoundation\IpUtils::checkIp($ip, $list);
+        return IpUtils::checkIp($ip, $list);
     }
 
     public function getBlackList(): Collection
@@ -45,11 +47,11 @@ class FilamentFirewall
             })
             ->toArray();
 
-        return \Symfony\Component\HttpFoundation\IpUtils::checkIp($ip, $list);
+        return IpUtils::checkIp($ip, $list);
     }
 
     public function getFirewallIpModel(): string
     {
-        return config('filament-firewall.models.ip', \SolutionForest\FilamentFirewall\Models\Ip::class);
+        return config('filament-firewall.models.ip', Ip::class);
     }
 }

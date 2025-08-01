@@ -2,6 +2,7 @@
 
 namespace SolutionForest\FilamentFirewall\Filament\Resources\FirewallIpResource\Pages;
 
+use Exception;
 use Filament\Actions\Action;
 use Filament\Actions\CreateAction;
 use Filament\Facades\Filament;
@@ -79,7 +80,7 @@ class ManageFirewallIps extends ManageRecords
                 ->success()
                 ->send();
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Notification::make()
                 ->title(__('filament-firewall::filament-firewall.action.addMyIp.error'))
                 ->body($e->getMessage())
