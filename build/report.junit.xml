@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="/var/www/packages/filament-firewall/phpunit.xml.dist" tests="1" assertions="3" errors="0" failures="0" skipped="0" time="0.048630">
+    <testsuite name="SolutionForest Test Suite" tests="1" assertions="3" errors="0" failures="0" skipped="0" time="0.048630">
+      <testsuite name="Tests\src\ArchTest" file="tests/src/ArchTest.php" tests="1" assertions="3" errors="0" failures="0" skipped="0" time="0.048630">
+        <testcase name="it will not use debugging functions" file="tests/src/ArchTest.php::it will not use debugging functions" class="Tests\src\ArchTest" classname="Tests.src.ArchTest" assertions="3" time="0.048630"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
