@@ -2,6 +2,16 @@
 
 All notable changes to `filament-firewall` will be documented in this file.
 
+## Release 3.0.0 - 2025-08-01
+
+### Support Filament v4 🚀
+
+### Installation
+
+```bash
+composer require solution-forest/tab-layout-plugin:^3.0.0
+
+```
 ## 2.0.4 - 2025-08-01
 
 ### 🐛 Bug Fixes
