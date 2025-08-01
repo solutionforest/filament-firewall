@@ -38,16 +38,29 @@ This package provides a whitelist and blacklist feature to restrict access to yo
    php artisan filament-firewall:install
    ```
 
-3. This package comes with `WhitelistRangeMiddleware`. You need to register it in `$middleware` in the `app\Http\Kernel.php` file:
+3. This package comes with `WhitelistRangeMiddleware`. You need to register it in `$middleware`:
 
-   ```bash
+   **For Laravel version 11.x and above:**
+
+   ```php
+   // in bootstrap/app.php
+   ->withMiddleware(function (Middleware $middleware) {
+        $middleware->append(\SolutionForest\FilamentFirewall\Middleware\WhitelistRangeMiddleware::class);
+   })
+   ```
+
+   **For Laravel versions below 11.x:**
+
+   ```php
+   // in app/Http/Kernel.php
    protected $middleware = [
-       ...
-       \SolutionForest\FilamentFirewall\Middleware\WhitelistRangeMiddleware::class,
+        ...
+        \SolutionForest\FilamentFirewall\Middleware\WhitelistRangeMiddleware::class,
    ];
    ```
 
 4. You can change the setting in the `config/filament-firewall.php` file to skip the middleware `WhitelistRangeMiddleware` check.
+
 5. Register the plugin in your Panel provider:
 
    > **Important: Register the plugin in your Panel provider after version 2.x**
