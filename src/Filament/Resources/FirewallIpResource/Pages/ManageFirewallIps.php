@@ -32,7 +32,7 @@ class ManageFirewallIps extends ManageRecords
             $currIp = Request::getClientIp();
 
             if (FilamentFirewall::getFirewallIpModel()::query()->where('ip', $currIp)->whereNull('prefix_size')->first()) {
-            
+
                 Notification::make()
                     ->title(__('filament-firewall::filament-firewall.action.addMyIp.alreadyAdded'))
                     ->danger()
@@ -60,7 +60,7 @@ class ManageFirewallIps extends ManageRecords
                 ->title(__('filament-actions::create.single.notifications.created.title'))
                 ->success()
                 ->send();
-    
+
         } catch (\Exception $e) {
             //
         }

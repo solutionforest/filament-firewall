@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 
 return [
     'filament.resource.ip.navigationLabel' => 'IP Firewall',

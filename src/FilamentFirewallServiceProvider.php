@@ -24,7 +24,7 @@ class FilamentFirewallServiceProvider extends PackageServiceProvider
                     ->publishMigrations()
                     ->startWith(function (InstallCommand $command) {
                         $command->call('vendor:publish', [
-                            '--tag' => 'firewall'   // Required package
+                            '--tag' => 'firewall',   // Required package
                         ]);
                     })
                     ->endWith(function (InstallCommand $command) {

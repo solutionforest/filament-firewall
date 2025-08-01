@@ -19,9 +19,11 @@ class FilamentFirewall
                 if ($record->prefix_size) {
                     $ip = (string) str($ip)->finish('/')->finish($record->prefix_size);
                 }
+
                 return $ip;
             })
             ->toArray();
+
         return \Symfony\Component\HttpFoundation\IpUtils::checkIp($ip, $list);
     }
 
@@ -38,9 +40,11 @@ class FilamentFirewall
                 if ($record->prefix_size) {
                     $ip = (string) str($ip)->finish('/')->finish($record->prefix_size);
                 }
+
                 return $ip;
             })
             ->toArray();
+
         return \Symfony\Component\HttpFoundation\IpUtils::checkIp($ip, $list);
     }
 

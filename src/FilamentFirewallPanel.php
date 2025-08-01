@@ -27,7 +27,7 @@ class FilamentFirewallPanel implements Plugin
     {
         return app(static::class);
     }
-    
+
     public static function get(): static
     {
         return filament(app(static::class)->getId());

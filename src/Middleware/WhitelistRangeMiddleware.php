@@ -2,13 +2,13 @@
 
 namespace SolutionForest\FilamentFirewall\Middleware;
 
-use Illuminate\Database\QueryException;
 use Akaunting\Firewall\Abstracts\Middleware as BaseMiddleware;
+use Illuminate\Database\QueryException;
 use SolutionForest\FilamentFirewall\Facades\FilamentFirewall;
 use Symfony\Component\HttpFoundation\IpUtils;
 
 /**
- * Allow access if 
+ * Allow access if
  * 1. IP within config('firewall.whitelist') or config('filament-firewall.skip_whitelist_range)
  * 2. the requested IP is whitelisted
  * 3. the requested IP is not in blacklisted
@@ -30,7 +30,7 @@ class WhitelistRangeMiddleware extends BaseMiddleware
                 ->get()
                 ->unique('blocked');
             // have allow/deny record for requesting IP
-            if ($currIpIsAllowOrDeny->isNotEmpty()) { 
+            if ($currIpIsAllowOrDeny->isNotEmpty()) {
                 // Allow access if "ALLOW ACCESS" for requesting IP
                 if ($currIpIsAllowOrDeny->filter(fn ($record) => ! $record->blocked)->isNotEmpty()) {
                     return true;
@@ -44,9 +44,8 @@ class WhitelistRangeMiddleware extends BaseMiddleware
             $allow = FilamentFirewall::withinWhiteList($currIp);
         } catch (QueryException $e) {
             // Base table or view not found
-            
-        }
 
+        }
 
         return $allow;
     }
@@ -68,7 +67,6 @@ class WhitelistRangeMiddleware extends BaseMiddleware
     {
         $this->prepare($request);
 
-
         if ($this->isWhitelist()) {
             return true;
         }
@@ -77,7 +75,7 @@ class WhitelistRangeMiddleware extends BaseMiddleware
             return true;
         }
 
-        if (!config('firewall.enabled', true)) {
+        if (! config('firewall.enabled', true)) {
             return true;
         }
 

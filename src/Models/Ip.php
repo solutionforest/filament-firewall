@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace SolutionForest\FilamentFirewall\Models;
 
@@ -7,9 +7,9 @@ class Ip extends \Akaunting\Firewall\Models\Ip
     protected $table = 'firewall_ips';
 
     protected $fillable = [
-        'ip', 
-        'prefix_size', 
-        'log_id', 
+        'ip',
+        'prefix_size',
+        'log_id',
         'blocked',
     ];
 
