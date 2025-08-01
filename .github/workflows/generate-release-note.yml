@@ -3,14 +3,14 @@ name: "Generate Release Note"
 on:
   push:
     tags:
-      - 'v*' # Triggers for any tag starting with 'v' (e.g., v1.0, v2.1.3)
-      - 'release-*' # Triggers for any tag starting with 'release-'
-      - '2.*.*' # Triggers for any tag starting with '2.' (e.g., 2.0.0, 2.1.0)
-      - '3.*.*' # Triggers for any tag starting with '3.' (e.g., 3.0.0, 3.1.0)
+      - "v*" # Triggers for any tag starting with 'v' (e.g., v1.0, v2.1.3)
+      - "release-*" # Triggers for any tag starting with 'release-'
+      - "2.*.*" # Triggers for any tag starting with '2.' (e.g., 2.0.0, 2.1.0)
+      - "3.*.*" # Triggers for any tag starting with '3.' (e.g., 3.0.0, 3.1.0)
 
 permissions:
-    contents: write
-    pull-requests: read
+  contents: write
+  pull-requests: read
 
 jobs:
   check-for-release:
@@ -28,7 +28,10 @@ jobs:
       - name: Check if release is needed
         id: check
         run: |
-          echo "Checking if a release should be created... ${GITHUB_REF}"
+          echo "Tag pushed: ${{ github.ref_name }}"
+          echo "version=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+
           if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
             echo "This workflow does not run for tag pushes."
             echo "should-release=false" >> $GITHUB_OUTPUT
@@ -70,7 +73,7 @@ jobs:
         run: |
           # Get the latest tag
           LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
-          
+
           if [ -z "$LATEST_TAG" ]; then
             # If no previous tag, get all commits
             COMMITS=$(git log --pretty=format:"- %s (%h)" --reverse)
@@ -78,13 +81,13 @@ jobs:
             # Get commits since last tag
             COMMITS=$(git log ${LATEST_TAG}..HEAD --pretty=format:"- %s (%h)" --reverse)
           fi
-          
+
           # Categorize commits
           BREAKING_CHANGES=""
           FEATURES=""
           FIXES=""
           OTHER=""
-          
+
           while IFS= read -r commit; do
             if echo "$commit" | grep -qE "(BREAKING CHANGE|!:)"; then
               BREAKING_CHANGES="$BREAKING_CHANGES$commit"$'\n'
@@ -96,35 +99,35 @@ jobs:
               OTHER="$OTHER$commit"$'\n'
             fi
           done <<< "$COMMITS"
-          
+
           # Build release notes
           RELEASE_NOTES="## What's Changed in ${{ needs.check-for-release.outputs.version }}"$'\n\n'
-          
+
           if [ -n "$BREAKING_CHANGES" ]; then
             RELEASE_NOTES="$RELEASE_NOTES### 💥 Breaking Changes"$'\n'"$BREAKING_CHANGES"$'\n'
           fi
-          
+
           if [ -n "$FEATURES" ]; then
             RELEASE_NOTES="$RELEASE_NOTES### ✨ New Features"$'\n'"$FEATURES"$'\n'
           fi
-          
+
           if [ -n "$FIXES" ]; then
             RELEASE_NOTES="$RELEASE_NOTES### 🐛 Bug Fixes"$'\n'"$FIXES"$'\n'
           fi
-          
+
           if [ -n "$OTHER" ]; then
             RELEASE_NOTES="$RELEASE_NOTES### 🔧 Other Changes"$'\n'"$OTHER"$'\n'
           fi
-          
+
           # Add installation instructions
           RELEASE_NOTES="$RELEASE_NOTES"$'\n'"## Installation"$'\n\n'
           RELEASE_NOTES="$RELEASE_NOTES\`\`\`bash"$'\n'
           RELEASE_NOTES="$RELEASE_NOTES""composer require solution-forest/tab-layout-plugin:^${{ needs.check-for-release.outputs.version }}"$'\n'
           RELEASE_NOTES="$RELEASE_NOTES\`\`\`"$'\n\n'
-          
+
           # Save to file for GitHub release
           echo "$RELEASE_NOTES" > release_notes.md
-          
+
           # Output for GitHub (escape newlines)
           echo "notes<<EOF" >> $GITHUB_OUTPUT
           echo "$RELEASE_NOTES" >> $GITHUB_OUTPUT
