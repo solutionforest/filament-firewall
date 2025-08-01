@@ -7,11 +7,11 @@ use Filament\Actions\CreateAction;
 use Filament\Facades\Filament;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ManageRecords;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOneOrManyThrough;
 use Illuminate\Support\Facades\Request;
 use SolutionForest\FilamentFirewall\Facades\FilamentFirewall;
 use SolutionForest\FilamentFirewall\Filament\Resources\FirewallIpResource;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use Illuminate\Database\Eloquent\Relations\HasOneOrManyThrough;
 
 class ManageFirewallIps extends ManageRecords
 {
