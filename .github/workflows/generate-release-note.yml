@@ -27,6 +27,9 @@ jobs:
 
       - name: Check if release is needed
         id: check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG_NAME="${{ github.ref_name }}"
           echo "Tag pushed: ${{ github.ref_name }}"
