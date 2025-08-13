@@ -2,6 +2,20 @@
 
 All notable changes to `filament-firewall` will be documented in this file.
 
+## 3.0.1 - 2025-08-13
+
+### What's Changed in 3.0.1
+
+#### 🔧 Other Changes
+
+* chore: change minimum stability from beta to stable in composer.json
+
+### Installation
+
+```bash
+composer require solution-forest/filament-firewall:^3.0.1
+
+```
 ## Release 3.0.0 - 2025-08-01
 
 ### Support Filament v4 🚀
@@ -10,6 +24,7 @@ All notable changes to `filament-firewall` will be documented in this file.
 
 ```bash
 composer require solution-forest/tab-layout-plugin:^3.0.0
+
 
 ```
 ## 2.0.4 - 2025-08-01
