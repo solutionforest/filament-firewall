@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> Please note that we will only be updating to version 2.x, excluding any bug fixes.
+> Please note that we will only be updating to version 2.x or 3.x, excluding any bug fixes.
 
 ## About Solution Forest
 
@@ -61,9 +61,15 @@ This package provides a whitelist and blacklist feature to restrict access to yo
 
 4. You can change the setting in the `config/filament-firewall.php` file to skip the middleware `WhitelistRangeMiddleware` check.
 
-5. Register the plugin in your Panel provider:
+5. For additional configuration options, you can refer to the [Laravel Firewall configuration file](https://github.com/akaunting/laravel-firewall/blob/master/src/Config/firewall.php) to customize more firewall settings. Some key configuration options include:
 
-   > **Important: Register the plugin in your Panel provider after version 2.x**
+   - `config('firewall.enabled')` - Controls whether the firewall is enabled (default: `true`)
+   - `config('firewall.middleware')` - Middleware configuration settings
+
+6. Register the plugin in your Panel provider:
+
+   > [!IMPORTANT]  
+   > Register the plugin in your Panel provider after **version 2.x**
 
    ```bash
     use SolutionForest\FilamentFirewall\FilamentFirewallPlugin;
