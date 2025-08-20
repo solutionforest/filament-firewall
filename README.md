@@ -3,20 +3,17 @@
 
 ## About Solution Forest
 
-[Solution Forest](https://solutionforest.com) Web development agency based in Hong Kong. We help customers to solve their problems. We Love Open Soruces.
+[Solution Forest](https://solutionforest.com) Web development agency based in Hong Kong. We help customers to solve their problems. We Love Open Soruces. 
 
 We have built a collection of best-in-class products:
 
-- [VantagoAds](https://vantagoads.com): A self manage Ads Server, Simplify Your Advertising Strategy.
-- [GatherPro.events](https://gatherpro.events): A Event Photos management tools, Streamline Your Event Photos.
-- [Website CMS Management](https://filamentphp.com/plugins/solution-forest-cms-website): Website CMS Management - Filament CMS Plugin
+- [InspireCMS](https://inspirecms.net): A full-featured Laravel CMS with everything you need out of the box. Build smarter, ship faster with our complete content management solution.
 - [Filaletter](https://filaletter.solutionforest.net): Filaletter - Filament Newsletter Plugin
+- [Website CMS Management](https://filamentphp.com/plugins/solution-forest-cms-website): A hands-on Filament CMS plugin for those who prefer more manual control over their website content management.
 
 # Filament Firewall
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/solution-forest/filament-firewall.svg?style=flat-square)](https://packagist.org/packages/solution-forest/filament-firewall)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/solution-forest/filament-firewall/run-tests?label=tests)](https://github.com/solution-forest/filament-firewall/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/solution-forest/filament-firewall/Check%20&%20fix%20styling?label=code%20style)](https://github.com/solution-forest/filament-firewall/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/solution-forest/filament-firewall.svg?style=flat-square)](https://packagist.org/packages/solution-forest/filament-firewall)
 
 This package provides a whitelist and blacklist feature to restrict access to your Laravel application and Filament admin panel. For additional functionality, please refer to the [Laravel Firewall package](https://github.com/akaunting/laravel-firewall).
