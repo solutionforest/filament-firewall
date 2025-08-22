@@ -65,8 +65,7 @@ This package provides a whitelist and blacklist feature to restrict access to yo
 
 6. Register the plugin in your Panel provider:
 
-   > [!IMPORTANT]  
-   > Register the plugin in your Panel provider after **version 2.x**
+   > **Important: Register the plugin in your Panel provider after version 2.x**
 
    ```bash
     use SolutionForest\FilamentFirewall\FilamentFirewallPlugin;
