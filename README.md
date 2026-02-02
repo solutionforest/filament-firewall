@@ -21,6 +21,14 @@ This package provides a whitelist and blacklist feature to restrict access to yo
 ![filament-firewall-package-1](https://github.com/solutionforest/filament-firewall/assets/68525320/153b1478-003f-4ef9-bebc-8ed249647e9f)
 ![filament-firewall-package-2](https://github.com/solutionforest/filament-firewall/assets/68525320/1cde3993-77e1-4e64-8e4c-9727f1a40801)
 
+## Supported Filament versions
+
+| Filament Version | Plugin Version |
+| ---------------- | -------------- |
+| v2               | 1.x.x          |
+| v3               | 2.x.x          |
+| v4               | 3.x.x          |
+
 ## Getting Started
 
 1. Install the package using the `composer require` command:
