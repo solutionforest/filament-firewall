@@ -2,6 +2,30 @@
 
 All notable changes to `filament-firewall` will be documented in this file.
 
+## 3.0.2 - 2026-02-02
+
+### What's Changed in 3.0.2
+
+#### 📘 Documentation updates
+
+- Add supported Filament versions to README (63fbeca)
+
+#### 🐛 Bug fixes
+
+- Fix indentation in composer.json dependencies (e3a729d)
+
+#### 🔧 Other Changes
+
+- Bump actions/checkout from 4 to 5 (10d5f1b)
+- Bump actions/checkout from 4 to 5 (5ddaccb)
+- Bump stefanzweifel/git-auto-commit-action from 6 to 7 (fc39779)
+- Bump actions/checkout from 5 to 6 (7d11a8e)
+- Handle vendor:publish failures in installer (4935226)
+
+### Installation
+
+**Full Changelog**: https://github.com/solutionforest/filament-firewall/compare/3.0.1...3.0.2
+
 ## 3.0.1 - 2025-08-13
 
 ### What's Changed in 3.0.1
@@ -15,6 +39,7 @@ All notable changes to `filament-firewall` will be documented in this file.
 ```bash
 composer require solution-forest/filament-firewall:^3.0.1
 
+
 ```
 ## Release 3.0.0 - 2025-08-01
 
@@ -24,6 +49,7 @@ composer require solution-forest/filament-firewall:^3.0.1
 
 ```bash
 composer require solution-forest/tab-layout-plugin:^3.0.0
+
 
 
 ```
