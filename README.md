@@ -1,9 +1,9 @@
 > [!IMPORTANT]
-> Please note that we will only be updating to version 3.x, excluding any bug fixes.
+> Please note that we will only be updating to version 4.x, excluding any bug fixes.
 
 ## About Solution Forest
 
-[Solution Forest](https://solutionforest.com) Web development agency based in Hong Kong. We help customers to solve their problems. We Love Open Soruces. 
+[Solution Forest](https://solutionforest.com) Web development agency based in Hong Kong. We help customers to solve their problems. We Love Open Soruces.
 
 We have built a collection of best-in-class products:
 
@@ -28,6 +28,7 @@ This package provides a whitelist and blacklist feature to restrict access to yo
 | v2               | 1.x.x          |
 | v3               | 2.x.x          |
 | v4               | 3.x.x          |
+| v5               | 4.x.x          |
 
 ## Getting Started
 
@@ -67,7 +68,6 @@ This package provides a whitelist and blacklist feature to restrict access to yo
 4. You can change the setting in the `config/filament-firewall.php` file to skip the middleware `WhitelistRangeMiddleware` check.
 
 5. For additional configuration options, you can refer to the [Laravel Firewall configuration file](https://github.com/akaunting/laravel-firewall/blob/master/src/Config/firewall.php) to customize more firewall settings. Some key configuration options include:
-
    - `config('firewall.enabled')` - Controls whether the firewall is enabled (default: `true`)
    - `config('firewall.middleware')` - Middleware configuration settings
 
