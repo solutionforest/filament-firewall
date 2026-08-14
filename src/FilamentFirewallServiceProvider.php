@@ -26,7 +26,7 @@ class FilamentFirewallServiceProvider extends PackageServiceProvider
                         try {
                             $command->call('vendor:publish', [
                                 '--tag' => 'firewall',   // Required package
-                                ]);
+                            ]);
                         } catch (\Throwable $th) {
                             // display error message
                             $installCommand = 'php artisan vendor:publish --tag=firewall';
