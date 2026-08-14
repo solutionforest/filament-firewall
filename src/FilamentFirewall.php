@@ -18,7 +18,7 @@ class FilamentFirewall
         $list = $this->getWhiteList()
             ->map(function ($record) {
                 $ip = $record->ip;
-                if ($record->prefix_size) {
+                if ($record->prefix_size !== null) {
                     $ip = (string) str($ip)->finish('/')->finish($record->prefix_size);
                 }
 
@@ -39,7 +39,7 @@ class FilamentFirewall
         $list = $this->getBlackList()
             ->map(function ($record) {
                 $ip = $record->ip;
-                if ($record->prefix_size) {
+                if ($record->prefix_size !== null) {
                     $ip = (string) str($ip)->finish('/')->finish($record->prefix_size);
                 }
 
